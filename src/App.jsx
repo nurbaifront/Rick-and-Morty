@@ -2,13 +2,33 @@ import React, { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import image from './assets/header.png' 
 import Filters from "./Components/Filter/Filters";
 import Cards from "./Components/Cards/Cards";
 import Padination from "./Components/Pagination/Pagination";
 import Search from "./Components/Search/Search";
+import Navbar from "./Components/Navbar/Navbar";
+
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Episode from "./Pages/Episode";
+import Location from "./Pages/Location";
 
 function App() {
+  return (
+    <Router>
+    <div className="App">
+       <Navbar/>
+    </div>
+
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/episodes" element={<Episode/>}/>
+      <Route path="/location" element={<Location/>}/>
+    </Routes>
+    </Router>
+  );
+}
+
+const Home = () => {
 let [pageNumber, setPageNumber] = useState(1);
 
 let [search, setSearch] = useState("");
@@ -35,10 +55,9 @@ let { info, results} = fetchedData
   },[api]);
 
   return (
-  <div className  ="App">
-    <div className  ="text-center ">
-    <img style={{width: '250px', height: '130px'}} src={image} alt="icons"/>
-    </div>
+  <div className="App">
+   
+   
 
     <Search setPageNumber={setPageNumber} setSearch={setSearch}/>
 
