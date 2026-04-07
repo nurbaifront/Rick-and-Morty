@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
@@ -7,7 +6,7 @@ import Cards from "./Components/Cards/Cards";
 import Padination from "./Components/Pagination/Pagination";
 import Search from "./Components/Search/Search";
 import Navbar from "./Components/Navbar/Navbar";
-
+import React, { useState, useEffect } from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Episode from "./Pages/Episode";
 import Location from "./Pages/Location";
@@ -30,20 +29,15 @@ function App() {
 
 const Home = () => {
 let [pageNumber, setPageNumber] = useState(1);
-
 let [search, setSearch] = useState("");
-
 let [status, setStatus] = useState("");
-
 let [gender, setGender] = useState("");
-
 let [species, setSpecies] = useState("");
 
 console.log(pageNumber);
 
 let [fetchedData, updateFetchData] = useState([]);
 let { info, results} = fetchedData
-
 
   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
 
